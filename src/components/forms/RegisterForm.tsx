@@ -1,9 +1,14 @@
 import * as yup from "yup";
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateUserParams } from "../../utils/types";
 import { registerUser } from "../../utils/api";
+import {
+    FieldError,
+    FormStyles,
+    SubmitButton,
+    TextInput,
+} from "../../utils/styles";
 
 export const RegisterForm = () => {
     const {
@@ -25,44 +30,15 @@ export const RegisterForm = () => {
     };
 
     return (
-        <RegisterFormStyles
-            onSubmit={handleSubmit(onSubmit)}
-            autoComplete="off"
-        >
-            {errors.email && (
-                <span
-                    style={{
-                        color: "#fa3640",
-                        position: "absolute",
-                        marginTop: "-15px",
-                    }}
-                >
-                    {errors.email?.message}
-                </span>
-            )}
+        <FormStyles onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            {errors.email && <FieldError>{errors.email?.message}</FieldError>}
 
             {errors.username && !errors.email && (
-                <span
-                    style={{
-                        color: "#fa3640",
-                        position: "absolute",
-                        marginTop: "-15px",
-                    }}
-                >
-                    {errors.username?.message}
-                </span>
+                <FieldError>{errors.username?.message}</FieldError>
             )}
 
             {errors.password && !errors.email && !errors.username && (
-                <span
-                    style={{
-                        color: "#fa3640",
-                        position: "absolute",
-                        marginTop: "-15px",
-                    }}
-                >
-                    {errors.password?.message}
-                </span>
+                <FieldError>{errors.password?.message}</FieldError>
             )}
 
             <h1 style={{ marginRight: "auto" }}>Register</h1>
@@ -82,7 +58,7 @@ export const RegisterForm = () => {
                     Login
                 </a>
             </span>
-        </RegisterFormStyles>
+        </FormStyles>
     );
 };
 
@@ -109,54 +85,3 @@ const registerValidationSchema = yup
             .required("Password is a required field"),
     })
     .required();
-
-const RegisterFormStyles = styled.form`
-    width: 30rem;
-    height: 30rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media only screen and (max-width: 430px) {
-        width: 23.5rem;
-    }
-    @media only screen and (max-width: 400px) {
-        width: 21.5rem;
-    }
-`;
-
-const SubmitButton = styled.button`
-    background-color: #fa3640;
-    width: 100%;
-    height: 60px;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.15s;
-
-    :hover {
-        background-color: #e0313a;
-    }
-`;
-
-const TextInput = styled.input`
-    background-color: #1a1a1a;
-    width: 100%;
-    height: 60px;
-    box-sizing: border-box;
-    padding-left: 12px;
-    border: none;
-    color: #e6e8e6;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    font-size: 16px;
-`;

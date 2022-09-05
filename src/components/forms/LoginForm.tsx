@@ -4,6 +4,12 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "../../utils/api";
 import { LoginUserParams } from "../../utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {
+    TextInput,
+    SubmitButton,
+    FormStyles,
+    FieldError,
+} from "../../utils/styles";
 
 export const LoginForm = () => {
     const {
@@ -25,29 +31,11 @@ export const LoginForm = () => {
     };
 
     return (
-        <LoginFormStyles onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-            {errors.email && (
-                <span
-                    style={{
-                        color: "#fa3640",
-                        position: "absolute",
-                        marginTop: "-15px",
-                    }}
-                >
-                    {errors.email?.message}
-                </span>
-            )}
+        <FormStyles onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            {errors.email && <FieldError>{errors.email?.message}</FieldError>}
 
             {errors.password && !errors.email && (
-                <span
-                    style={{
-                        color: "#fa3640",
-                        position: "absolute",
-                        marginTop: "-15px",
-                    }}
-                >
-                    {errors.password?.message}
-                </span>
+                <FieldError>{errors.password?.message}</FieldError>
             )}
 
             <h1 style={{ marginRight: "auto" }}>Login</h1>
@@ -68,7 +56,7 @@ export const LoginForm = () => {
                     Register
                 </a>
             </span>
-        </LoginFormStyles>
+        </FormStyles>
     );
 };
 
@@ -76,54 +64,3 @@ const loginValidationSchema = yup.object({
     email: yup.string().required("Email is a required field"),
     password: yup.string().required("Password is a required field"),
 });
-
-const LoginFormStyles = styled.form`
-    width: 30rem;
-    height: 30rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media only screen and (max-width: 430px) {
-        width: 23.5rem;
-    }
-    @media only screen and (max-width: 400px) {
-        width: 21.5rem;
-    }
-`;
-
-const SubmitButton = styled.button`
-    background-color: #fa3640;
-    width: 100%;
-    height: 60px;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.15s;
-
-    :hover {
-        background-color: #e0313a;
-    }
-`;
-
-const TextInput = styled.input`
-    background-color: #1a1a1a;
-    width: 100%;
-    height: 60px;
-    box-sizing: border-box;
-    padding-left: 12px;
-    border: none;
-    color: #e6e8e6;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    font-size: 16px;
-`;
