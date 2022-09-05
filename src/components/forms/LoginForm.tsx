@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../utils/api";
