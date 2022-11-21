@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../utils/api";
-import { LoginUserParams } from "../../utils/types";
+import { AuthResponse, LoginUserParams } from "../../utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
     TextInput,
@@ -9,6 +9,7 @@ import {
     FormStyles,
     FieldError,
 } from "../../utils/styles";
+import { useState } from "react";
 
 export const LoginForm = () => {
     const {
@@ -19,11 +20,13 @@ export const LoginForm = () => {
         resolver: yupResolver(loginValidationSchema),
     });
 
-    const onSubmit = async (data: LoginUserParams) => {
-        console.log(data);
+    const [authResponse, setAuthResponse] = useState<AuthResponse>();
 
+    const onSubmit = async (data: LoginUserParams) => {
         try {
-            await loginUser(data);
+            const res = await loginUser(data);
+
+            setAuthResponse(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -31,6 +34,10 @@ export const LoginForm = () => {
 
     return (
         <FormStyles onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            {authResponse?.error && (
+                <FieldError>{authResponse.error}</FieldError>
+            )}
+
             {errors.email && <FieldError>{errors.email?.message}</FieldError>}
 
             {errors.password && !errors.email && (
