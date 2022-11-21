@@ -1,8 +1,9 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CreateUserParams } from "../../utils/types";
+import { AuthResponse, CreateUserParams } from "../../utils/types";
 import { registerUser } from "../../utils/api";
+import { useState } from "react";
 import {
     FieldError,
     FormStyles,
@@ -19,11 +20,13 @@ export const RegisterForm = () => {
         resolver: yupResolver(registerValidationSchema),
     });
 
-    const onSubmit = async (data: CreateUserParams) => {
-        console.log(data);
+    const [authResponse, setAuthResponse] = useState<AuthResponse>();
 
+    const onSubmit = async (data: CreateUserParams) => {
         try {
-            await registerUser(data);
+            const res = await registerUser(data);
+
+            setAuthResponse(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -31,15 +34,22 @@ export const RegisterForm = () => {
 
     return (
         <FormStyles onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-            {errors.email && <FieldError>{errors.email?.message}</FieldError>}
+            {authResponse?.error && (
+                <FieldError>{authResponse.error}</FieldError>
+            )}
 
-            {errors.username && !errors.email && (
+            {errors.email && !authResponse && (
+                <FieldError>{errors.email?.message}</FieldError>
+            )}
+
+            {errors.username && !(authResponse || errors.email) && (
                 <FieldError>{errors.username?.message}</FieldError>
             )}
 
-            {errors.password && !errors.email && !errors.username && (
-                <FieldError>{errors.password?.message}</FieldError>
-            )}
+            {errors.password &&
+                !(authResponse || errors.email || errors.username) && (
+                    <FieldError>{errors.password?.message}</FieldError>
+                )}
 
             <h1 style={{ marginRight: "auto" }}>Register</h1>
 
