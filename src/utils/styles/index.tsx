@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PostButton = styled.button`
     background-color: #fa3640;
-    width: 90%;
+    width: 100%;
     height: 42px;
     color: #e6e8e6;
     border-radius: 30px;
@@ -95,6 +95,7 @@ export const NavChild = styled.a`
     text-decoration: none;
     position: relative;
     margin-top: 8px;
+    transition: background-color 0.3s;
 
     :hover {
         background-color: #1a1a1a;
@@ -119,6 +120,7 @@ export const DashboardAvatar = styled.img`
 export const DashboardTextWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-left: 2px;
 `;
 
 export const DashboardUsernameLabel = styled.span`
