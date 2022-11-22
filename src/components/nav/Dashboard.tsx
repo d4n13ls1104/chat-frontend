@@ -21,7 +21,7 @@ export const Dashboard = () => {
                     style={{
                         position: "absolute",
                         right: "16px",
-                        top: "24px",
+                        top: "25px",
                     }}
                 />
             </DashboardTextWrapper>
