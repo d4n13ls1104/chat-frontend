@@ -13,3 +13,13 @@ export type AuthResponse = {
     error?: string;
     success?: string;
 };
+
+export type TrendingProps = {
+    items: TrendingItemProps[];
+};
+
+export type TrendingItemProps = {
+    title: string;
+    timesTweeted: number;
+    isLastItem?: boolean;
+};
