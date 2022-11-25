@@ -1,16 +1,98 @@
 import styled from "styled-components";
 
+export const TrendingItemTitle = styled.span`
+    font-weight: bold;
+`;
+
+export const TrendingItemSubText = styled.span`
+    color: #c0c0c0;
+    font-size: 12px;
+`;
+
+export const TrendingItemTextStack = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
+export const TrendingItemStyles = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    color: #e6e8e6;
+    box-sizing: border-box;
+    padding: 10px 16px 10px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+
+    :hover {
+        background-color: #313131;
+    }
+`;
+
+export const TrendingItemWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const TrendingHeader = styled.span`
+    font-weight: bold;
+    color: #e6e8e6;
+    font-size: 19px;
+    margin: 8px 0px 8px 16px;
+`;
+
+export const TrendingWrapper = styled.div`
+    background-color: #1a1a1a;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 16px;
+    padding-top: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #313131;
+`;
+
+export const SearchInput = styled.input`
+    background-color: #1a1a1a;
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    padding-left: 12px;
+    border: none;
+    color: #e6e8e6;
+    border-radius: 18px;
+    font-size: 13px;
+    border: 1px solid #313131;
+`;
+
+export const RightPanelWrapper = styled.div`
+    width: 19rem;
+    position: fixed;
+    right: 24px;
+    top: 16px;
+`;
+
 export const PostButton = styled.button`
+    font-weight: bold;
     background-color: #fa3640;
     width: 100%;
-    height: 42px;
+    height: 39px;
     color: #e6e8e6;
     border-radius: 30px;
     border: none;
-    font-size: 18px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 16px;
+    margin-top: 18px;
     align-self: center;
     :hover {
         background-color: #e0313a;
@@ -75,7 +157,7 @@ export const FieldError = styled.span`
 `;
 
 export const NavSidebarStyles = styled.div`
-    width: 16rem;
+    width: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,7 +168,7 @@ export const NavSidebarStyles = styled.div`
 
 export const NavChild = styled.a`
     color: #e6e8e6;
-    font-size: 21px;
+    font-size: 19px;
     width: 100%;
     padding-top: 8px;
     padding-bottom: 8px;
