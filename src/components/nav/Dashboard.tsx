@@ -10,18 +10,18 @@ import {
 export const Dashboard = () => {
     return (
         <DashboardWrapper>
-            <DashboardAvatar src="https://pbs.twimg.com/media/Eyjq7IBXMAAbxdX?format=jpg&name=medium" />
+            <DashboardAvatar src="/avatar_default.jpg" />
             <DashboardTextWrapper>
-                <DashboardUsernameLabel>President Biden</DashboardUsernameLabel>
+                <DashboardUsernameLabel>Username</DashboardUsernameLabel>
 
-                <DashboardHandleLabel>@POTUS</DashboardHandleLabel>
+                <DashboardHandleLabel>@handle</DashboardHandleLabel>
                 <BiDotsHorizontalRounded
                     fill="#fff"
                     size="20px"
                     style={{
                         position: "absolute",
                         right: "16px",
-                        top: "25px",
+                        top: "25.5px",
                     }}
                 />
             </DashboardTextWrapper>
